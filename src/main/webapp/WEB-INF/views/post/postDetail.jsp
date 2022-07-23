@@ -2,12 +2,22 @@
 <%@include file="../layout/header.jsp"%>
 <!-- Header-->
 <header class="bg-dark py-5">
+<c:if test="${principal.user.id eq post.user.id}">
+<div class="d-flex justify-content-end pb-2">
+	<div class="d-flex ml-5 w-25 px-3" >
+		<button class="btn btn-outline-danger d-flex mx-3" id="btn-delete">삭제</button>
+		<a class="btn btn-outline-secondary" href="/posts/${post.id }/update-form">수정</a>
+	</div>
+</div>
+</c:if>
 	<div class="d-flex container px-4 px-lg-5 justify-content-center">
 		<iframe width="640" height="360" src="https://www.youtube.com/embed/${post.videoId }?
 		rel=0&amp;autoplay=1&mute=1&amp;playlist=${post.videoId}&loop=1" frameborder="0"> </iframe>
 	</div>
-	<div class="d-flex justify-content-left" style="margin-left:650px;">
+	<div class="d-flex justify-content-start">
+	<div class="d-flex justify-content-end w-50 mt-2" style="padding-right:160px;">
 	<font color="white" size="2">조회수 ${post.view}회 <fmt:formatDate pattern="yyyy-MM-dd" value="${post.createTime }"/></font>
+	</div>
 	</div>
 	<br>
 	<input type="hidden" id="postId" value="${post.id}"/>

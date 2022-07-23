@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.joony.muvirec.config.auth.PrincipalDetailService;
+import com.joony.muvirec.handler.CustomAuthFailureHandler;
 @Configuration
 @EnableWebSecurity //시큐리티 필터가 등록이 된다.
 @EnableGlobalMethodSecurity(prePostEnabled = true) //특정 주소로 접근을 하면 권한 및 인증을 미리 체크하겠다는 뜻
@@ -19,6 +20,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
 	private PrincipalDetailService principalDetailService;
+	@Autowired
+	private CustomAuthFailureHandler Handler; // 로그인 실패 예외를 핸들링하여 메세지를 전송
 	
 	//IoC 설정 encode 값을 스프링이 관리한다.
 	//인코드가 되지 않은 비밀번호는 사용 불가능하다
@@ -58,10 +61,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.authenticated() // 로그인 후 접근 가능 
 		.and()
 			.formLogin()
-			.loginPage("/auth/loginForm")
+			.loginPage("/auth/login-form")
 			.loginProcessingUrl("/auth/loginProc") //스프링 시큐리티가 해당 주소로 요청오는 로그인을 가로채서 대신 로그인한다.
 			//principalDetailService로 유저 정보를 던져준다 
+			.failureHandler(Handler) // 로그인 실패시 
 			.defaultSuccessUrl("/"); //정상일 경우 메인 페이지 이동 
+			
 	}//configure
 
 }//class

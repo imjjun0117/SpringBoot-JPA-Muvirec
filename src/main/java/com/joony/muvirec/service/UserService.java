@@ -2,20 +2,28 @@ package com.joony.muvirec.service;
 
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.joony.muvirec.model.Post;
 import com.joony.muvirec.model.RoleType;
 import com.joony.muvirec.model.User;
+import com.joony.muvirec.repository.PostRepository;
 import com.joony.muvirec.repository.UserRepository;
+
+import net.bytebuddy.asm.Advice.OffsetMapping.Sort;
 
 @Service
 public class UserService {
 
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private PostRepository postRepository;
 	@Autowired
 	private BCryptPasswordEncoder encoder; //security 인코더 의존성 주입
 	
@@ -48,8 +56,10 @@ public class UserService {
 	@Transactional
 	public int update(User user) {
 		int cnt = 0;
-		User tempUser = userRepository.findByUsername(user.getUsername()).orElse(null); // 영속화
-		if(tempUser != null) {
+		User tempUser = userRepository.findById(user.getId()).orElseThrow(()->{
+			return new IllegalArgumentException("해당 유저를 찾을 수 없습니다.");
+		});
+		if(user != null ) {
 			tempUser.setUsername(user.getUsername());
 			tempUser.setEmail(user.getEmail());
 			tempUser.setPassword(encoder.encode(user.getPassword())); //인코딩 후 저장
@@ -58,5 +68,13 @@ public class UserService {
 		}//end if
 		return cnt;
 	}//update
+	
+	
+	@Transactional(readOnly = true)
+	public List<Post> findByUserId(int id){
+		
+		List<Post> posts = postRepository.findByUserIdOrderByCreateTimeDesc(id).orElseGet(null);
+		return posts;
+	}//findByUserId
 	
 }//class

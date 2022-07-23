@@ -13,6 +13,7 @@
 									</div>
 									<div class="card-body" style="margin-top: 20px;">
 										<div class="form-floating mb-3">
+											<input type="hidden" id="hidUsername" value="${principal.user.username }"/>
 											<input class="form-control" id="username" type="text" name="username" value="${principal.user.username }"/> <label for="inputUsername">User Name &nbsp;<font id="dupCheck" size="2"></font></label>
 										</div>
 
@@ -28,7 +29,7 @@
 										</div>
 										<!--<div class="form-check mb-3"></div>  -->
 										<div class="justify-content-between mt-4 mb-0" style="text-align: center">
-											<button class="btn btn-primary" id="btn-update" style="width: 400px;">수정완료</button>
+											<button class="btn btn-success" id="btn-update" style="width: 400px;">수정완료</button>
 										</div>
 									</div>
 								</div>

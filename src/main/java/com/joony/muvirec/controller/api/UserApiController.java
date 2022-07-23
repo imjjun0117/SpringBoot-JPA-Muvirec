@@ -6,16 +6,17 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.joony.muvirec.dto.ResponseDto;
 import com.joony.muvirec.model.User;
 import com.joony.muvirec.service.UserService;
-
 @RestController
 public class UserApiController {
 
@@ -38,7 +39,7 @@ public class UserApiController {
 		return new ResponseDto<>(HttpStatus.OK.value(),cnt);
 	}//dupChekc
 	
-	@PutMapping("/users")
+	@PutMapping("/api/users")
 	public ResponseDto<Integer> update(@RequestBody User user){
 		int cnt = userService.update(user);
 		// 여기서는 트랜잭션이 종료되기 때문에 DB에 값은 변경이 됐지만

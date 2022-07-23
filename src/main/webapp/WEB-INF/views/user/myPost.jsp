@@ -1,25 +1,12 @@
-
-<%@include file="layout/header.jsp"%>
-<!-- Header-->
-<header class="bg-dark py-5">
-	<div class="d-flex container px-4 px-lg-5 justify-content-center">
-		<!--   <div class="text-center text-white">
-                    <h1 class="display-4 fw-bolder">Shop in style</h1>
-                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
-                </div> -->
-		<iframe width="640" height="360" 
-		src="https://www.youtube.com/embed/${videoId}?rel=0&amp;autoplay=1&mute=1&amp;playlist=${videoId}&loop=1" frameborder="0"> 
-		</iframe>
-	</div>
-</header>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="../layout/header.jsp"%>
 <!-- Section-->
 <section class="bg-dark py-5" >
-	<div class="d-flex justify-content-center">
-		<input type="text" class="form-control rounded-pill" placeholder="Search" style="width: 600px; height: 50px;" />
-	</div>
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-			<c:forEach var="post" items="${postList }">
+		<c:choose>
+			<c:when test="${not empty posts }">
+			<c:forEach var="post" items="${posts }">
 				<div class="col mb-5">
 					<div class="card h-100">
 						<!-- Product image-->
@@ -51,8 +38,13 @@
 					</div>
 				</div>
 			</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<font color="white">포스트가 존재하지 않습니다 <a href="/posts/add-form">작성</a> </font>
+			</c:otherwise>
+		</c:choose>
 
 		</div>
 	</div>
 </section>
-<jsp:include page="layout/footer.jsp" />
+<%@include file="../layout/footer.jsp" %>

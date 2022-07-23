@@ -35,11 +35,11 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
 				<c:if test="${not empty principal}">
-					<li class="nav-item"><a class="nav-link" href="/post/addForm">Write</a></li>
+					<li class="nav-item"><a class="nav-link" href="/posts/add-form">Write</a></li>
 					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Page</a>
 						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<li><a class="dropdown-item" href="/user/updateForm">User Edit</a></li>
-							<li><a class="dropdown-item" href="#">My Post</a></li>
+							<li><a class="dropdown-item" href="/users/update-form">User Edit</a></li>
+							<li><a class="dropdown-item" href="/users/my-post">My Post</a></li>
 						</ul>
 					</li>
 				</c:if>
@@ -51,9 +51,9 @@
 							<li class="nav-item"><a class="btn btn-outline-dark" style="width: 100px;" href="/logout">Logout</a></li>
 						</c:when>
 						<c:otherwise>
-							<li class="nav-item"><a class="btn btn-outline-primary" style="width: 100px; margin-right: 10px;" href="/auth/loginForm"> Login <!-- <span class="badge bg-dark text-white ms-1 rounded-pill">0</span> -->
+							<li class="nav-item"><a class="btn btn-outline-primary" style="width: 100px; margin-right: 10px;" href="/auth/login-form"> Login <!-- <span class="badge bg-dark text-white ms-1 rounded-pill">0</span> -->
 							</a></li>
-							<li class="nav-item"><a class="btn btn-outline-dark" style="width: 100px;" href="/auth/joinForm">Join</a></li>
+							<li class="nav-item"><a class="btn btn-outline-dark" style="width: 100px;" href="/auth/join-form">Join</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>

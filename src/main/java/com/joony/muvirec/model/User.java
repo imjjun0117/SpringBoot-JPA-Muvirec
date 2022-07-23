@@ -1,17 +1,25 @@
 package com.joony.muvirec.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -52,7 +60,7 @@ public class User {
 	//admin,user,manager 도메인(범위)를 줄 수 있어 휴먼에러 감소
 	
 	
-	@CreationTimestamp // 시간이 자동으로 입력
+	@CreationTimestamp // 시간을 자동으로 입력
 	private Timestamp createDate;
 	
 }

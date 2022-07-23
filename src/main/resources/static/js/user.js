@@ -16,6 +16,11 @@ let index = {
 				this.save();
 			}
 		});//click
+		$("#btn-delete").on("click", () => {
+			if(confirm("정말로 삭제하시겠습니까?")){
+				this.delete();
+			}//end if
+		});//click
 		$("#btn-login").on("click", () => {
 			//로그인 시 유효성 검사
 			if ($("#username-login").val() == '') {
@@ -86,7 +91,7 @@ let index = {
 		}).done(function(resp) {
 			if (resp.data == 1) {
 				alert("회원가입이 완료되었습니다.");
-				location.href = "/auth/loginForm";
+				location.href = "/auth/login-form";
 			} else {
 				alert("회원가입을 실패하였습니다.");
 			}
@@ -104,15 +109,19 @@ let index = {
 			contentType: "application/json; charser=UTF-8",
 			dataType: "JSON"
 		}).done(function(resp) {
-			$("#dupCheckId").val(resp.data);
-			if (resp.data == 1) {
+			var checkNum = resp.data;
+			if($("#hidUsername").val()==$("#username").val()){
+				$("#dupCheck").html("");
+				checkNum = 0;
+			}else if(resp.data == 1){
 				$("#dupCheck").html("중복되는 이름입니다.");
 				$("#dupCheck").attr('color', 'red');
-			} else {
+			}else {
 				$("#dupCheck").html("사용할 수 있는 이름입니다.");
 				$("#dupCheck").attr('color', 'green');
 			}
-			console.log(resp.data);
+			$("#dupCheckId").val(checkNum);
+				
 		}).fail(function(error) {
 			$("#dupCheck").html("오류가 발생했습니다");
 			$("#dupCheck").attr('color', 'red');
@@ -121,13 +130,13 @@ let index = {
 
 	update: function() {
 		let data = {
-			id: $("#id").val(),
+		 id : $("#id").val(),
 			username: $("#username").val(),
 			password: $("#password").val(),
 			email: $("#email").val()
 		};
 		$.ajax({
-			url: "/users",
+			url: "/api/users/",
 			data: JSON.stringify(data),
 			type: "PUT",
 			contentType: "application/json; charser=UTF-8",
@@ -141,6 +150,28 @@ let index = {
 			}
 		}).fail(function(error) {
 			alert("회원수정 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요");
+		});
+	},//update
+	
+	delete: function() {
+		let data = {
+		 id : $("#id").val(),
+		};
+		$.ajax({
+			url: "/api/users/",
+			data: JSON.stringify(data),
+			type: "DELETE",
+			contentType: "application/json; charser=UTF-8",
+			dataType: "JSON"
+		}).done(function(resp) {
+			if (resp.data == 1) {
+				alert("회원삭제가 완료되었습니다.");
+				location.href = "/";
+			} else {
+				alert("회원삭제를 실패하였습니다.");
+			}
+		}).fail(function(error) {
+			alert("회원삭제 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요");
 		});
 	},//update
 

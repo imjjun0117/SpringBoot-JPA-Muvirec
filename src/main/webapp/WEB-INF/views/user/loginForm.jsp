@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +18,9 @@
 <header class="bg-dark py-3">
 	<div class="container px-4 px-lg-5 my-0">
 		<div class="text-center text-white">
-			<h1 class="display-4 fw-bolder"><a href="/" style="text-decoration:none; color:#FFFFFF">Muvirec</a></h1>
+			<h1 class="display-4 fw-bolder">
+				<a href="/" style="text-decoration: none; color: #FFFFFF">Muvirec</a>
+			</h1>
 		</div>
 	</div>
 </header>
@@ -34,7 +36,8 @@
 									<h3 class="text-center font-weight-light my-4">Login</h3>
 								</div>
 								<div class="card-body" style="margin-top: 20px;">
-								<form action="/auth/loginProc" method="post" id="loginForm"><!--Spring Security 사용을 위해 submit으로 전송  -->
+									<form action="/auth/loginProc" method="post" id="loginForm">
+										<!--Spring Security 사용을 위해 submit으로 전송  -->
 										<div class="form-floating mb-3">
 											<input class="form-control" id="username-login" type="text" name="username" value="joony" /> <label for="inputEmail">User Name</label>
 										</div>
@@ -42,11 +45,17 @@
 											<input class="form-control" id="password" type="password" name="password" value="1111" /> <label for="inputPassword">Password</label>
 										</div>
 										<!-- 	<div class="form-check mb-3"></div> -->
-								</form>
-										<div class="justify-content-between mt-4 mb-0" style="text-align: center">
-											<button class="btn btn-primary" id="btn-login" style="width: 400px;">로그인</button> 
-											<a class="btn btn-primary mt-2" style="width: 400px;">카카오 로그인</a> 
-										</div>
+	 								</form>
+									<c:if test="${not empty exception }">
+	 								<span>
+										<font size="2" color="red">${exception }</font>
+									</span>
+									</c:if>
+									<div class="justify-content-between mt-4 mb-0" style="text-align: center">
+										<button class="btn btn-primary" id="btn-login" style="width: 400px;">로그인</button>
+										<a class="btn btn-primary mt-2" style="width: 400px;">카카오 로그인</a>
+										<a class="btn btn-dark mt-2" href="/auth/join-form"style="width: 400px;">회원가입</a>
+									</div>
 								</div>
 							</div>
 						</div>
