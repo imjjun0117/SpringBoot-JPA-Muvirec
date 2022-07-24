@@ -1,10 +1,9 @@
 package com.joony.muvirec.repository;
 
-import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.OrderBy;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -14,6 +13,8 @@ public interface PostRepository extends JpaRepository<Post, Integer>{
 	@Query(value="select videoId from post where view =(select max(view) from post) "
 			+ "order by createTime desc limit 1",nativeQuery = true)
 	String findVideo();
-	Optional<List<Post>> findByUserIdOrderByCreateTimeDesc(int id);
+	
+	//페이징 처리
+	Optional<Page<Post>> findByUserId(int id,Pageable pageable);
 	
 }//interface

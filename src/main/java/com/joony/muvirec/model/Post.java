@@ -46,6 +46,9 @@ public class Post {
 	@Column(nullable = false, length = 100)
 	private String videoId;
 	
+	@Column(length=500)
+	private String tag; // 해시태그용 컬럼
+	
 	@ColumnDefault("0")
 	private int view;
 	
