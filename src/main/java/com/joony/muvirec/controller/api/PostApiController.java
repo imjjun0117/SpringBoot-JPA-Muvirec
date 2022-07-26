@@ -63,27 +63,6 @@ public class PostApiController {
 		int cnt = postService.udpatePost(id,post);
 		return new ResponseDto<>(HttpStatus.OK.value(),cnt);
 	}//update
-	
-	@PostMapping("/posts/{postId}/replys")
-	public ResponseDto<Integer> saveReply(@RequestBody ReplySaveRepositoryDto rDto){
-		int cnt = postService.saveReply(rDto);
-		return new ResponseDto<>(HttpStatus.CREATED.value(),cnt);
-	}//saveReply
-	
-	@GetMapping(path = "/posts/{postId}/replys",produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Reply> getReplyList(@PathVariable int postId ){
-		
-		List<Reply> replyList = null;
-		Post post = postService.findById(postId);
-		replyList = post.getReplys();
-		
-		return replyList;
-	}//getReplyList
-	
-	@DeleteMapping("/replys/{replyId}")
-	public ResponseDto<Integer> deleteReply(@PathVariable int replyId){
-		postService.deleteReply(replyId);
-		return new ResponseDto<>(HttpStatus.OK.value(),1);
-	}//deleteReply
+
 	
 }//class

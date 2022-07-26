@@ -52,9 +52,9 @@
 									</span>
 									</c:if>
 									<div class="justify-content-between mt-4 mb-0" style="text-align: center">
-										<button class="btn btn-primary" id="btn-login" style="width: 400px;">로그인</button>
-										<a class="btn btn-primary mt-2" style="width: 400px;">카카오 로그인</a>
-										<a class="btn btn-dark mt-2" href="/auth/join-form"style="width: 400px;">회원가입</a>
+										<button class="btn btn-primary" id="btn-login" style="width: 90%;">로그인</button>
+										<a class="btn btn-primary mt-2" style="width: 90%;">카카오 로그인</a>
+										<a class="btn btn-dark mt-2" href="/auth/join-form"style="width: 90%;">회원가입</a>
 									</div>
 								</div>
 							</div>

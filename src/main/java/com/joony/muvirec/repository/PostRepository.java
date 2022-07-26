@@ -17,4 +17,8 @@ public interface PostRepository extends JpaRepository<Post, Integer>{
 	//페이징 처리
 	Optional<Page<Post>> findByUserId(int id,Pageable pageable);
 	
+//	@Query(value = "select p.*, round(avg(r.rating),1) as rating from post p "
+//			+ "left join rating r on r.postId=p.id group by p.id order by createTime desc",nativeQuery = true)
+//	List<Post> findPost();
+//	
 }//interface

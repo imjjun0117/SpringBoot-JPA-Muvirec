@@ -51,7 +51,7 @@
 										</div>
 									<!--<div class="form-check mb-3"></div>  -->
 										<div class="justify-content-between mt-4 mb-0" style="text-align: center">
-											<button class="btn btn-primary" id="btn-save" style="width: 400px;">가입완료</button> 
+											<button class="btn btn-primary" id="btn-save" style="width: 90%;">가입완료</button> 
 										</div>
 								</div>
 							</div>

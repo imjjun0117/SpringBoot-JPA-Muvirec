@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
@@ -60,6 +59,10 @@ public class Post {
 	@JsonIgnoreProperties({"post"})//reply 리스트를 호출할 때 무한 참조 방지
 	@OrderBy("createDate desc")
 	private List<Reply> replys;
+	
+	@OneToMany(mappedBy = "post",fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties({"post"})
+	private List<Rating> ratings;
 	
 	@CreationTimestamp
 	private Timestamp createTime;

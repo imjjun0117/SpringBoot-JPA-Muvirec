@@ -31,6 +31,10 @@
 								<h6 class="fw-bolder">
 									<a href="/posts/${post.id}" style="text-decoration: none; color: #000000;">${post.title}</a>
 								</h6>
+							<%-- 	<c:if test="${not empty post.ratings }">
+								<c:forEach var="rating" items=${post.ratings }>
+								
+								</c:forEach>
 								<!-- Product reviews-->
 								<div class="d-flex justify-content-center small text-warning mb-1">
 									<div class="bi-star-fill"></div>
@@ -39,6 +43,7 @@
 									<div class="bi-star-fill"></div>
 									<div class="bi-star-fill"></div>
 								</div>
+								</c:if> --%>
 								<!-- Product price-->
 								${post.singer }
 

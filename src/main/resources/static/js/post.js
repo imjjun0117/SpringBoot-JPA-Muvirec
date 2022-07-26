@@ -4,6 +4,16 @@
 let index = {
 
 	init: function() {
+		$("#btn-rating").on("click", ()=>{
+			if(confirm("한번 평점을 주시면 수정할 수 없습니다. 평점등록 하시겠습니까?")){
+				if(!$("input[name=rating]:checked").val()){
+					alert("평점을 입력해주세요!");
+					return;
+				}//end if
+				this.ratingSave();
+			}//end if
+		});//click
+		
 		$("#btn-save").on("click", () => {
 			if (this.isEnabled()) {
 				this.save();
@@ -125,13 +135,38 @@ let index = {
 		}).done(function(resp) {
 			if (resp.data == 1) {
 				alert("댓글등록이 완료되었습니다.");
-				//location.href=`/posts/${data.postId}`;
 				getCommentList();
 			} else {
 				alert("댓글등록을 실패하였습니다.");
 			}
 		}).fail(function(error) {
 			alert("댓글등록 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요");
+		});
+	},//replySave
+	
+	ratingSave: function() {
+		let data = {
+			userId: $("#userId").val(),
+			rating: $("input[name=rating]:checked").val(),
+			postId: $("#postId").val()
+		};
+		$.ajax({
+			url: `/api/posts/${data.postId}/ratings`,
+			data: JSON.stringify(data),
+			type: "POST",
+			contentType: "application/json; charser=UTF-8",
+			dataType: "JSON"
+		}).done(function(resp) {
+			if (resp.data == 1) {
+				alert("평점등록이 완료되었습니다.");
+				$("input[name=rating]").attr("disabled",true);
+				$("#btn-rating-div").html("");
+				$("#rating-title").html("내 평점");
+			} else {
+				alert("평점등록을 실패하였습니다.");
+			}
+		}).fail(function(error) {
+			alert("평점등록 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요");
 		});
 	},//replySave
 
