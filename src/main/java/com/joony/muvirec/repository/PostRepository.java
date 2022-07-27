@@ -1,5 +1,6 @@
 package com.joony.muvirec.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -21,4 +22,5 @@ public interface PostRepository extends JpaRepository<Post, Integer>{
 //			+ "left join rating r on r.postId=p.id group by p.id order by createTime desc",nativeQuery = true)
 //	List<Post> findPost();
 //	
+	Optional<Page<Post>> findByTitleContainsOrTagContains(String keyword,String keyword2,Pageable pageable);
 }//interface

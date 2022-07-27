@@ -3,9 +3,12 @@ package com.joony.muvirec.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.joony.muvirec.model.Post;
 import com.joony.muvirec.model.User;
@@ -19,13 +22,9 @@ public class PostService {
 	
 	
 	@Transactional
-	public List<Post> findAll() {
-		return postRepository.findAll(Sort.by(Sort.Direction.DESC, "createTime"));
+	public Page<Post> findAll(Pageable pageable) {
+		return postRepository.findAll(pageable);
 	}
-//	@Transactional 
-//	public List<Post> find(){
-//		return postRepository.findPost();
-//	}
 
 	@Transactional(readOnly = true)
 	public String findVideo() {
@@ -39,7 +38,7 @@ public class PostService {
 			post.setUser(user);
 			postRepository.save(post);
 			cnt = 1;
-		}
+		}//end if
 		return cnt;
 	}// save
 
@@ -56,6 +55,7 @@ public class PostService {
 		respPost.setDescription(post.getDescription());
 		respPost.setSinger(post.getSinger());
 		respPost.setVideoId(post.getVideoId());
+		respPost.setTag(post.getTag());
 		cnt = 1;
 		}
 		//update 수행
@@ -95,5 +95,16 @@ public class PostService {
 		post.setView(post.getView()+1); //update
 		
 	}//updateView
+	
+	/**
+	 * 검색 기능 구현
+	 * @return
+	 */
+	public Page<Post> searchPost(String keyword,Pageable pageable){
+		Page<Post> posts =
+				postRepository.findByTitleContainsOrTagContains(keyword,keyword,pageable).orElseGet(null);
+		
+		return posts;
+	}//searchPost
 	
 }// class

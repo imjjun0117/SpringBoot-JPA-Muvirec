@@ -2,7 +2,7 @@
  * 사용자 관련 자바스크립트
  */
 let index = {
-
+	
 	init: function() {
 		$("#btn-rating").on("click", ()=>{
 			if(confirm("한번 평점을 주시면 수정할 수 없습니다. 평점등록 하시겠습니까?")){
@@ -13,7 +13,6 @@ let index = {
 				this.ratingSave();
 			}//end if
 		});//click
-		
 		$("#btn-save").on("click", () => {
 			if (this.isEnabled()) {
 				this.save();
@@ -38,6 +37,13 @@ let index = {
 
 	},//init	
 	isEnabled: function() {
+		var hashTag = $("#hashTag").val();
+		if(hashTag != ""){
+			if(hashTag.indexOf('#')==-1 || hashTag.length > 300 || hashTag.indexOf(" ")!=-1){
+				alert("해시태그는 '#'을 포함시키고 공백없이 300자 밑으로 작성하셔야 합니다.")
+				return false;
+			}//end if
+		}//end if
 		if ($("#singer").val() == '') {
 			alert("가수를 입력해주세요");
 			$("#singer").focus();
@@ -65,7 +71,8 @@ let index = {
 			singer: $("#singer").val(),
 			title: $("#title").val(),
 			description: $("#description").val(),
-			videoId: this.extractVideoID($("#videoId").val())
+			videoId: this.extractVideoID($("#videoId").val()),
+			tag:$("#hashTag").val()
 		};
 		$.ajax({
 			url: "/api/posts",
@@ -90,7 +97,8 @@ let index = {
 			singer: $("#singer").val(),
 			title: $("#title").val(),
 			description: $("#description").val(),
-			videoId: this.extractVideoID($("#videoId").val())
+			videoId: this.extractVideoID($("#videoId").val()),
+			tag:$("#hashTag").val()
 		};
 		$.ajax({
 			url: `/api/posts/${id}`,
@@ -192,7 +200,7 @@ let index = {
 }//index
 function getCommentList() {
 	//동영상을 끊기지 않고 댓글을 갱신하기 위해서 json 데이터를 받아 비동기 화면 전환을 구현
-	let = postId = $("#postId").val();
+	let postId = $("#postId").val();
 	let userId = $("#userId").val();
 	$.ajax({
 		url: `/api/posts/${postId}/replys`,
@@ -204,7 +212,7 @@ function getCommentList() {
 		if (json == "") {
 			html = "<font color='white'>댓글이 존재하지 않습니다.</font>";
 		} else {
-			json.forEach(function(reply, idx) {
+			json.forEach(function(reply, idx) { // 받아온 데이터로 화면 출력
 				html += "<div class='d-flex py-2 text-white'><div class='flex-shrink-0'>";
 				html += "<img class='rounded-circle' src='../image/Profile-PNG-Clipart.png' style='width:50px;'>";
 				html += "</div><div class='ms-3'>";
@@ -230,7 +238,7 @@ function replyDelete(replyId) {
 	$.ajax({
 		url: `/api/replys/${replyId}`,
 		type: "DELETE",
-		contentType: "application/json; charser=UTF-8",
+		contentType: "application/json;charset=UTF-8",
 		dataType: "JSON"
 	}).done(function(resp) {
 		if (resp.data == 1) {
@@ -258,4 +266,16 @@ function dateFormat(date) {
 
         return date.getFullYear() + '-' + month + '-' + day + ' ' + hour + ':' + minute;
 }//dateFormat
+
+// tag 안에 있는 값을 array type 으로 만들어서 넘긴다.
+function marginTag() {
+	return Object.values(tag).filter(function(word) {
+		return word !== "";
+	});
+}//marginTag
+// 입력한 값을 태그로 생성한다.
+function addTag(value) {
+	tag[counter] = value;
+	counter++; // del-btn 의 고유 id 가 된다.
+}//addTag
 index.init();

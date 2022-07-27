@@ -1,0 +1,23 @@
+@charset "UTF-8";
+#tag-list{
+	list-style:none;
+    margin-bottom:10px;
+    padding:0;
+}
+.tag-item{
+	margin: 5px 5px 0 0;
+    padding: 0 5px 0;
+    border : 0;
+    float: left;
+    background-color:#6799FF;
+    border-radius : 1rem;
+    color:#FFFFFF;
+    font-size:15px;
+}
+.del-btn{
+	padding-left:5px;
+}
+.del-btn:hover{
+	color:#333;
+	cursor:pointer;
+}
