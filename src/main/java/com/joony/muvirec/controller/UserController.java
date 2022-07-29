@@ -5,13 +5,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.joony.muvirec.config.auth.PrincipalDetail;
+import com.joony.muvirec.model.KakaoProfile;
 import com.joony.muvirec.model.Post;
 import com.joony.muvirec.service.UserService;
 
@@ -57,4 +61,14 @@ public class UserController {
 		return "user/myPost";
 	}//myPost
 	
+	@GetMapping("/auth/kakao/callback")
+	public String kakaoCallback(String code) {
+	   //사용자 정보
+	   KakaoProfile kakaoProfile = userService.getKakaoProfile(code);
+	   //로그인
+	   userService.kakaoLogin(kakaoProfile);
+	   
+		return "redirect:/";
+	}//kakaoCallback
 }//class
+

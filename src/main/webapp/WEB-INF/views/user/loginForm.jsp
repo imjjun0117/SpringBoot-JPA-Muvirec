@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,16 +45,16 @@
 											<input class="form-control" id="password" type="password" name="password" value="1111" /> <label for="inputPassword">Password</label>
 										</div>
 										<!-- 	<div class="form-check mb-3"></div> -->
-	 								</form>
+									</form>
 									<c:if test="${not empty exception }">
-	 								<span>
-										<font size="2" color="red">${exception }</font>
-									</span>
+										<span> <font size="2" color="red">${exception }</font>
+										</span>
 									</c:if>
 									<div class="justify-content-between mt-4 mb-0" style="text-align: center">
-										<button class="btn btn-primary" id="btn-login" style="width: 90%;">로그인</button>
-										<a class="btn btn-primary mt-2" style="width: 90%;">카카오 로그인</a>
-										<a class="btn btn-dark mt-2" href="/auth/join-form"style="width: 90%;">회원가입</a>
+										<button class="btn btn-primary" id="btn-login" style="width: 70%;">로그인</button>
+										<a href="https://kauth.kakao.com/oauth/authorize?client_id=f6b15c39444cb2c2527a358a4ab3407c&redirect_uri=http://localhost:8080/auth/kakao/callback&response_type=code">
+										<img style="margin-top: 10px; height: 38px; width: 70%;" src="/image/kakao_login_medium_wide.png" /></a> 
+										<a class="btn btn-dark mt-2" href="/auth/join-form" style="width: 70%;">회원가입</a>
 									</div>
 								</div>
 							</div>

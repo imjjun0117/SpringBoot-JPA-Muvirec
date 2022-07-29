@@ -70,10 +70,7 @@ public class PostApiController {
 	@GetMapping("/auth/api/posts")
 	public Page<Post> search(String keyword,
 			@PageableDefault(size = 8, sort = "createTime", direction = Sort.Direction.DESC)Pageable pageable){
-		System.out.println(keyword);
-		System.out.println(pageable.getPageNumber());
 		Page<Post> posts = postService.searchPost(keyword,pageable);
-		
 		return posts;
 	}//search
 	

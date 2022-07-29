@@ -30,13 +30,6 @@ public class PostController {
 	public String main(Model model,String keyword,
 			@PageableDefault(size = 8, sort = "createTime", direction = Sort.Direction.DESC)Pageable pageable) {
 		Page<Post> posts = postService.findAll(pageable);
-//		if(keyword == null) {
-//			//키워드 null일 경우 모든 항목 조회
-//			posts = postService.searchPost("", pageable);
-//		}else {
-//			posts = postService.searchPost(keyword, pageable);//키워드가 있을 경우
-//			model.addAttribute("keyword",keyword); //index 페이징 uri 설정을 위해 추가해준다.
-//		}//end if
 		 
 		int startPage = ((pageable.getPageNumber())/5)*5+1; // 보여줄 페이지 수 5개일 때 시작 페이지 
 		//끝 페이지가 전체 페이지 수보다 클 경우 첫페이지+4 아니면 전체 페이지를 반환

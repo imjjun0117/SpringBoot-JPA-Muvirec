@@ -17,19 +17,19 @@
 	</div>
 	<div class="d-flex justify-content-start">
 		<div class="d-flex justify-content-end w-50 mt-2" style="padding-right: 160px;">
-			<font color="white" size="2">조회수 ${post.view}회 <fmt:formatDate pattern="yyyy-MM-dd" value="${post.createTime }" /></font>
+			<font color="white" size="2">조회수 <c:out value="${post.view}"/>회 <fmt:formatDate pattern="yyyy-MM-dd" value="${post.createTime }" /></font>
 		</div>
 	</div>
 	<br> <input type="hidden" id="postId" value="${post.id}" /> <input type="hidden" id="userId" value="${principal.user.id}" />
 
 	<div class="container d-flex justify-content-center text-white">
-		<h1>${post.title}</h1>
+		<h1><c:out value="${post.title}"/></h1>
 	</div>
 </header>
 <!-- Section-->
 <section class="bg-dark py-2 text-white">
 	<div class="container d-flex justify-content-center text-center ">
-		가수이름 : ${post.singer } <br> 작성자 : ${post.user.username } <br />
+		가수이름 : <c:out value="${post.singer }"/> <br> 작성자 :<c:out value="${post.user.username }"/> <br />
 	</div>
 	<div class="d-flex justify-content-center ">
 		평점 :
@@ -46,13 +46,13 @@
 				<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 			</div>
 		</div>
-		(${avgRating})
+		(<c:out value="${avgRating}"/>)
 		</c:otherwise>
 		</c:choose>
 
 	</div>
 	<div class="d-flex justify-content-center">
-	<br /> <br /> ${post.description }<br />
+	<br /> <br /> <c:out value="${post.description }"/><br />
 	</div>
 </section>
 <section class=" bg-dark">
@@ -91,7 +91,7 @@
 												</c:if>
 												</font>
 											</div>
-											<div class="d-flex justify-content-between">${reply.content}</div>
+											<div class="d-flex justify-content-between"><c:out value="${reply.content}"/></div>
 										</div>
 									</div>
 								</c:forEach>

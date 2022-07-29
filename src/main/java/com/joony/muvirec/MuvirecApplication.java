@@ -9,5 +9,4 @@ public class MuvirecApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MuvirecApplication.class, args);
 	}
-
 }

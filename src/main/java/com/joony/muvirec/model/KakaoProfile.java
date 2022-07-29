@@ -1,6 +1,8 @@
 
 package com.joony.muvirec.model;
 
+import com.joony.muvirec.model.KakaoProfile.KakaoAccount.Profile;
+
 import lombok.Data;
 
 @Data
@@ -10,13 +12,13 @@ public class KakaoProfile {
 	public String connected_at;
 	public Properties properties;
 	public KakaoAccount kakao_account;
+	
 	@Data
 	class Properties {
 
 		public String nickname;
 		public String profile_image;
 		public String thumbnail_image;
-
 	}//Properties
 	@Data
 	public class KakaoAccount {

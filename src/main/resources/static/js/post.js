@@ -5,7 +5,7 @@ let index = {
 	
 	init: function() {
 		$("#btn-rating").on("click", ()=>{
-			if(confirm("한번 평점을 주시면 수정할 수 없습니다. 평점등록 하시겠습니까?")){
+			if(confirm("평점등록 하시겠습니까?")){
 				if(!$("input[name=rating]:checked").val()){
 					alert("평점을 입력해주세요!");
 					return;
@@ -15,12 +15,16 @@ let index = {
 		});//click
 		$("#btn-save").on("click", () => {
 			if (this.isEnabled()) {
-				this.save();
+				if(confirm("포스트를 등록하시겠습니까?")){
+					this.save();
+				}//end if
 			}//end if 
 		});//click
 		$("#btn-update").on("click", () => {
 			if (this.isEnabled()) {
-				this.update();
+				if(confirm("포스트를 수정하시겠습니까?")){
+					this.update();
+				}//end if
 			}//end if
 		});//click
 		$("#confirmPassword").on("blur", () => {
@@ -49,8 +53,18 @@ let index = {
 			$("#singer").focus();
 			return false;
 		}//end if
+		if ($("#singer").val().length > 20) {
+			alert("가수 글자수 20글자를 초과했습니다")
+			$("#singer").focus();
+			return false;
+		}//end if
 		if ($("#title").val() == '') {
 			alert("제목을 입력해주세요");
+			$("#title").focus();
+			return false;
+		}//end if
+		if ($("#title").val().length > 40) {
+			alert("제목 글자수 40글자를 초과했습니다.");
 			$("#title").focus();
 			return false;
 		}//end if
@@ -59,8 +73,18 @@ let index = {
 			$("#description").focus();
 			return false;
 		}//end if
+		if ($("#description").val().length > 400) {
+			alert("곡 소개 글자수 400글자를 초과했습니다.");
+			$("#description").focus();
+			return false;
+		}//end if
 		if ($("#videoId").val() == '') {
 			alert("URL을 입력해주세요");
+			$("#videoId").focus();
+			return false;
+		}//end if
+		if ($("#videoId").val().length > 120) {
+			alert("URL은 120자까지 입력가능합니다");
 			$("#videoId").focus();
 			return false;
 		}//end if

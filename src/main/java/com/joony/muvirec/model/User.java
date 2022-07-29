@@ -44,13 +44,13 @@ public class User {
 	@Column(nullable = false, length = 100, unique = true)
 	private String username;
 	
-	@Column(nullable = false, length = 200)// 123456 -> 해쉬(비밀번호 암호화)
+	@Column(nullable = false, length = 150)// 123456 -> 해쉬(비밀번호 암호화)
 	private String password;
 	
-	@Column(nullable = false, length = 50)
+	@Column(nullable = false, length = 120)
 	private String email;
 	
-	//private String oauth; // oauth 사용자 판별
+	private String oauth; // oauth 사용자 판별
 	
 	// @ColumnDefault("'user'")
 	// DB는 RoleType이라는게 없다 어노테이션으로 String 설정

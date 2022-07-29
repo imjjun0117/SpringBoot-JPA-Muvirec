@@ -33,16 +33,16 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(nullable = false, length = 100)
+	@Column(nullable = false, length = 120)
 	private String title;
 	
-	@Column(nullable = false,length = 50)
+	@Column(nullable = false,length = 60)
 	private String singer;
 	
-	@Column(nullable = false, length = 200)
+	@Column(nullable = false, length = 1200)
 	private String description;
 	
-	@Column(nullable = false, length = 100)
+	@Column(nullable = false, length = 120)
 	private String videoId;
 	
 	@Column(length=500)

@@ -4,7 +4,7 @@
 	<div class="container px-4 px-lg-5 my-0">
 		<div class="text-center text-white">
 			<h1 class="display-4 fw-bolder">
-				<a href="/" style="text-decoration: none; color: #FFFFFF">My Posts</a>
+				<a href="/users/my-post" style="text-decoration: none; color: #FFFFFF">My Posts</a>
 			</h1>
 		</div>
 	</div>
@@ -14,43 +14,36 @@
 	<div class="container px-4 px-lg-5 mt-5">
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 			<c:choose>
-				<c:when test="${not empty posts }">
+				<c:when test="${not empty posts.content }">
 					<c:forEach var="post" items="${posts.content}">
 						<div class="col mb-5">
 							<div class="card h-100">
-								<!-- Product image-->
+								<!-- 썸네일-->
 								<img class="card-img-top" src="https://img.youtube.com/vi/${post.videoId}/mqdefault.jpg" alt="..." />
-								<!-- Product details-->
 								<div class="card-body p-4">
 									<div class="text-center">
-										<!-- Product name-->
 										<h6 class="fw-bolder">
-											<a href="/posts/${post.id}" style="text-decoration: none; color: #000000;">${post.title}</a>
+											<!-- 상세페이지 이동 -->
+											<a href="/posts/${post.id}" style="text-decoration: none; color: #000000;"><c:out value="${post.title}"/></a>
 										</h6>
-										<!-- Product reviews-->
-										<div class="d-flex justify-content-center small text-warning mb-1">
-											<div class="bi-star-fill"></div>
-											<div class="bi-star-fill"></div>
-											<div class="bi-star-fill"></div>
-											<div class="bi-star-fill"></div>
-											<div class="bi-star-fill"></div>
-										</div>
-										<!-- Product price-->
-										${post.singer }
+										<!-- 가수 -->
+										<c:out value="${post.singer }"/>
 
 									</div>
 								</div>
 								<!-- Product actions-->
 								<div class="card-footer p-3 pt-0 border-top-0 bg-transparent">
-									<font color="blue" size="2">#KanyeWest #RUNAWAY #Rigth Now</font>
+									<font color="blue" size="2"><c:out value="${post.tag }"/></font>
 								</div>
 							</div>
 						</div>
 					</c:forEach>
 				</c:when>
 				<c:otherwise>
+				<div class="d-flex justify-content-center w-100">
 					<font color="white">포스트가 존재하지 않습니다 <a href="/posts/add-form">작성</a>
-					</font>
+					</font><br/>
+				</div>
 				</c:otherwise>
 			</c:choose>
 

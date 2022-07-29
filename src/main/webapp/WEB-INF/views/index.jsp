@@ -16,7 +16,7 @@ a:hover {
 <!-- Section-->
 <section class="bg-dark py-5" >
 	<div class="d-flex justify-content-center">
-		<input id="search" type="text" class="form-control rounded-pill" name="keyword"style="width: 600px; height: 50px;" />
+		<input id="search" type="text" class="form-control rounded-pill" placeholder="Search" style="width: 600px; height: 50px;" />
 	</div>
 	<div id="item" class="container px-4 px-lg-5 mt-5">
 		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center" id="content-item">
@@ -29,16 +29,15 @@ a:hover {
 							<div class="text-center">
 								<!-- 제목-->
 								<h6 class="fw-bolder">
-									<a href="/posts/${post.id}" style="text-decoration: none; color: #000000;">${post.title}</a>
+									<a href="/posts/${post.id}" style="text-decoration: none; color: #000000;"><c:out value="${post.title}"/></a>
 								</h6>
 								<!--가수-->
-								${post.singer }
-
+								<c:out value="${post.singer }"/> 
 							</div>
 						</div>
 						<!-- 해시태그 -->
 						 <div class="card-footer d-flex justify-content-center p-3 pt-0 border-top-0 bg-transparent">
-							<font color="blue" size="2">${post.tag }</font>
+							<font color="blue" size="2"><c:out value="${post.tag }"/></font>
 						</div> 
 					</div>
 				</div>

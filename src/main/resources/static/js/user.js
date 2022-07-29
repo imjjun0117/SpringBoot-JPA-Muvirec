@@ -5,7 +5,10 @@ let index = {
 
 	init: function() {
 		$("#username").on("keyup", () => {
-			if ($("#username").val() != '') {
+			if($("#username").val().length > 20){
+				$("#dupCheck").html("이름 글자수 20글자를 초과했습니다.");
+				$("#dupCheck").attr('color', 'red');
+			}else if ($("#username").val() != '') {
 				this.dupCheck();
 			} else {
 				$("#dupCheck").html("");
@@ -13,7 +16,9 @@ let index = {
 		});//keydown
 		$("#btn-save").on("click", () => {
 			if (this.isEnabled()) {
-				this.save();
+				if(confirm("회원가입을 하시겠습니까?")){
+					this.save();
+				}
 			}
 		});//click
 		$("#btn-delete").on("click", () => {
@@ -46,6 +51,7 @@ let index = {
 
 	},//init	
 	isEnabled: function() {
+	  
 		if ($("#dupCheckId").val() == 1) {
 			alert("아이디가 중복됩니다.");
 			return false;
@@ -59,8 +65,18 @@ let index = {
 			$("#username").focus();
 			return false;
 		}//end if
+		if ($("#username").val().length > 20) {
+			alert("이름 허용 글자수를 확인해주세요");
+			$("#username").focus();
+			return false;
+		}//end if
 		if ($("#password").val() == '') {
 			alert("비밀번호를 입력해주세요");
+			$("#password").focus();
+			return false;
+		}//end if
+		if ($("#password").val().length > 50) {
+			alert("비밀번호 글자수 50글자를 초과했습니다.");
 			$("#password").focus();
 			return false;
 		}//end if
@@ -74,6 +90,17 @@ let index = {
 			$("#email").focus();
 			return false;
 		}//end if
+		if ($("#email").val().length > 40) {
+			alert("이메일 글자수 40글자를 초과했습니다.");
+			$("#email").focus();
+			return false;
+		}//end if
+		var text = $("#email").val();
+     	var regEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+      	if (!regEmail.test(text)) {
+          alert('입력된 값은 이메일이 아닙니다.');
+          return false;
+      	}
 		return true;
 	},//가입, 수정 유효성 검사
 	save: function() {
