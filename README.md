@@ -3,15 +3,15 @@
 - 유튜브 링크를 통해 뮤직비디오를 공유하며 댓글과 평점을 통해 소통할 수 있는 커뮤니티 웹 사이트입니다.
 
 # ⚙ 개발 환경
-- 운영체제 : Windows 10
-- IDE : STS4
-- JDK 버전 : JDK 11
-- Spring Boot 버전 : 2.7.1
-- 데이터 베이스 : MySQL
-- 빌드 툴 : Maven
-- 형상 관리 : GitHub
+- FrontEnd : HTML5, JS, CSS3, jQuery
+- BackEnd : Java(JDK 11)
+- OS : Windows
+- IDE : eclipse (EE, 2019-12 v4.14.0)
+- Server : AWS(EC2), Tomcat(v9), Putty(v0.76), WinSCP
+- CI : git(v2.37.1.windows.1), Github
+- DataBase : AWS RDS, MySQL5.7
 
-# 📢의존성
+# 📢dependencies
 - Spring Boot DevTools
 - Spring Web
 - Lombok
