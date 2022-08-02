@@ -53,7 +53,7 @@ public class UserService {
 	@Transactional
 	public int save(User user) {
 		int cnt = 0;
-		if(user != null) {
+		if(user != null && dupCheck(user.getUsername())!= 1) {
 			
 			//패스워드 인코딩 작업 수행
 			String encPassword = encoder.encode(user.getPassword()); 
@@ -84,7 +84,7 @@ public class UserService {
 		User tempUser = userRepository.findById(user.getId()).orElseThrow(()->{
 			return new IllegalArgumentException("해당 유저를 찾을 수 없습니다.");
 		});
-		if(user != null ) {
+		if(user != null && dupCheck(user.getUsername())!= 1) {
 			tempUser.setUsername(user.getUsername());
 			tempUser.setEmail(user.getEmail());
 			tempUser.setPassword(encoder.encode(user.getPassword())); //인코딩 후 저장
