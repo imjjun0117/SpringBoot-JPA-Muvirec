@@ -35,11 +35,10 @@ import com.joony.muvirec.repository.UserRepository;
 @Service
 public class UserService {
 
-	@Value("kakao.key")
-	private String kakaoKey;
-	@Value("kakao.client")
-	private String client;
-	
+	@Value("${kakao.key}")
+	private String kakaoKey; // 카카오 비밀번호 설정
+	@Value("${kakao.client}")
+	private String client; // 카카오 클라이언트
 	
 	@Autowired
 	private AuthenticationManager authManager;
