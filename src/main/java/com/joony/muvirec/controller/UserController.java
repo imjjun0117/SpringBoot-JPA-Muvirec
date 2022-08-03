@@ -25,6 +25,10 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	
+	@Value("${kakao.client}")
+	private String clientId; //카카오 클라이언트 키
 	/**
 	 * 로그인 페이지 이동 
 	 * @return
@@ -33,6 +37,7 @@ public class UserController {
 	public String loginForm(@RequestParam(value = "exception",required = false) String exception, 
 			Model model) {
 		model.addAttribute("exception", exception);
+		model.addAttribute("clientId",clientId);
 		return "user/loginForm";
 	}//loginForm
 	
