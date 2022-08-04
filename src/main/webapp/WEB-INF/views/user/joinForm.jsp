@@ -38,7 +38,7 @@
 											<input class="form-control" id="username" type="text" name="username" /> <label for="inputEmail">User Name &nbsp;<font id="dupCheck" size="2" ></font></label>
 										</div>
 										
-										<input type="hidden" id="dupCheckId"/>
+										<input type="hidden" id="dupCheckId" value="1"/>
 										<div class="form-floating mb-3">
 											<input class="form-control" id="password" type="password" name="password" /> <label for="inputPassword">Password &nbsp;<font id="confirmPass" size="2"></font></label>
 										</div>
