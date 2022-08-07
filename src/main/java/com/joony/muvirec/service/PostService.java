@@ -21,7 +21,7 @@ public class PostService {
 	private PostRepository postRepository;
 	
 	
-	@Transactional
+	@Transactional(readOnly = true)
 	public Page<Post> findAll(Pageable pageable) {
 		return postRepository.findAll(pageable);
 	}
