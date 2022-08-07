@@ -1,0 +1,44 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  error:
+    include-exception: true
+    include-stacktrace: ALWAYS
+    path: /error
+    whitelabel:
+      enabled: FALSE
+      
+#path 설정, DB 설정
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/muvirec?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://my-muvirec.cqgnyzjssl5d.ap-northeast-2.rds.amazonaws.com/muvirec_db
+    username: joony
+    password: joony123
+  jpa:
+  #영속성 컨텍스트
+    open-in-view: true
+    hibernate:
+      ddl-auto: update
+      #변수명 그대로 테이블에 피드 생성 낙타체 적용 안됨 org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      use-new-id-generator-mappings: false 
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
